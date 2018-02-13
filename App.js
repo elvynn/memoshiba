@@ -17,7 +17,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-          <AppNavigation user={this.state.user} />
+          <AppNavigation  />
       </View>
     );
   }

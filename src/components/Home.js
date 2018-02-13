@@ -5,6 +5,7 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
+import { navigationOptions } from '../config/navOptions';
 
 
 import ListadoBarajas from './ListadoBarajas';
@@ -16,13 +17,17 @@ export default class Home extends Component{
         super(props);
     }
 
-      
+    static navigationOptions = ({ navigation }) => ({
+        title: 'memoshiba',
+        ...navigationOptions
+       
+    })
 
 
     render(){
         return(
             <View style={styles.container} >
-                <ListadoBarajas />
+                <ListadoBarajas topNavigation={this.props.navigation} />
             </View>
         )
     }

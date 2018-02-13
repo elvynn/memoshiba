@@ -21,7 +21,20 @@ export default class ListadoBarajas extends Component{
         }
     }
     
-
+   
+    static navigationOptions = ({ navigation }) => ({
+        title: 'memoshiba',
+        headerStyle: {
+            backgroundColor: 'black',
+            paddingTop: 25,
+            paddingHorizontal: 0,
+            height: 80
+        },
+        headerTitleStyle: { //Color del texto
+            color: 'white'
+        },
+        headerTintColor: 'white' //Color de la flechita
+    })
     
     componentWillMount(){
         db.ref('/barajas')
@@ -38,7 +51,12 @@ export default class ListadoBarajas extends Component{
         return(
             <ScrollView style={styles.container}> 
                  {this.state.barajas.map((baraja, i) => (
-                    <TouchableWithoutFeedback >
+                    <TouchableWithoutFeedback 
+                     key = { i }
+                     onPress={() => this.props.topNavigation.navigate('baraja', {
+                         id: baraja.id
+                     })}
+                        >
                         <View style={ styles.card }>
                             <View>
                                 <Image style={ styles.foto } source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png' }}  />

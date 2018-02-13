@@ -7,13 +7,22 @@ import {
     ScrollView
 } from 'react-native';
 
+import { navigationOptions } from '../config/navOptions';
+
+
 export default class Baraja extends Component{
     constructor(props){
         super(props);
         this.state = {
-            id: 1
+            id: this.props.id
         }
     }
+
+    static navigationOptions = ({ navigation }) => ({
+        title: 'Baraja',
+        ...navigationOptions
+       
+    })
 
     render(){
         return(
