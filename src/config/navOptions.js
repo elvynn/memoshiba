@@ -1,6 +1,6 @@
 export const navigationOptions = {
     headerStyle: {
-        backgroundColor: 'black',
+        backgroundColor: '#5c56ae',
         paddingTop: 25,
         paddingHorizontal: 0,
         height: 80

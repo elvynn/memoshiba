@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    Image,
-    StyleSheet,
-    ScrollView
-} from 'react-native';
-
+import {  ScrollView } from 'react-native';
+import { db } from '../config/firebase';
 import { navigationOptions } from '../config/navOptions';
+import ListadoCartas from './ListadoCartas';
+
 
 
 export default class Baraja extends Component{
     constructor(props){
         super(props);
+
+        this.id = this.props.navigation.state.params.id;
         this.state = {
-            id: this.props.id
+            cartas: []
         }
     }
 
@@ -24,11 +22,21 @@ export default class Baraja extends Component{
        
     })
 
+      componentWillMount(){
+        db.ref("/barajas/"+this.id+"/cartas")
+        .once('value', snapshot => {
+            this.setState({
+                cartas: this.state.cartas.concat(snapshot.val()),
+                loader: false
+            })
+        })
+    }
+
     render(){
         return(
-            <View>
-                <Text>Probando</Text>
-            </View>
+            <ScrollView>
+                    <ListadoCartas cartas={this.state.cartas} />
+            </ScrollView>
         )
     }
 

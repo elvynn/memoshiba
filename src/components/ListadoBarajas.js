@@ -52,14 +52,14 @@ export default class ListadoBarajas extends Component{
             <ScrollView style={styles.container}> 
                  {this.state.barajas.map((baraja, i) => (
                     <TouchableWithoutFeedback 
-                     key = { i }
+                     key = { baraja.id }
                      onPress={() => this.props.topNavigation.navigate('baraja', {
                          id: baraja.id
                      })}
                         >
                         <View style={ styles.card }>
                             <View>
-                                <Image style={ styles.foto } source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png' }}  />
+                                <Image style={ styles.foto } source={require('../assets/avatar-1.png')}  />
                             </View>
                             <View style={ styles.textContainer } >
                                 <Text style={ styles.dificultad }>{ baraja.dificultad }</Text>
@@ -104,9 +104,9 @@ const styles=StyleSheet.create({
         fontSize: 18
     },
     foto: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
+        width: 70,
+        height: 70,
+        borderRadius: 35,
         marginRight: 10
     },
     dificultad: {
