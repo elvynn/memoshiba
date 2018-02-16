@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
-    Image,
     StyleSheet,
-    TouchableWithoutFeedback,
-    ScrollView,
-    TouchableOpacity
 }  from 'react-native';
 
 import Carta  from './Carta.js';

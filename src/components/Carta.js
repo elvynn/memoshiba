@@ -14,15 +14,17 @@ export default class Carta extends Component{
            verTexto: false,
            frontal: this.props.carta.frontal,
            trasero: this.props.carta.trasero,
-           actual: this.props.carta.frontal
+           actual: this.props.carta.frontal,
+           notas: this.props.carta.notas,
+           textoNota: ""
         };
     }
 
     toggleText = () => {
         if(this.state.verTexto === true){
-            this.setState({ verTexto: false, actual: this.state.frontal });
+            this.setState({ verTexto: false, actual: this.state.frontal, textoNota: "" });
         }else{
-            this.setState({ verTexto: true, actual: this.state.trasero });
+            this.setState({ verTexto: true, actual: this.state.trasero, textoNota: this.state.notas });
         }
     }
 
@@ -30,7 +32,8 @@ export default class Carta extends Component{
         return(
             <TouchableOpacity onPress={ this.toggleText }>
                 <View style={styles.flashCard}>
-                    <Text style={styles.flashCardFrontText}>{ this.state.actual }</Text>
+                    <Text style={styles.flashCardText}>{ this.state.actual }</Text>
+                    <Text style={styles.nota}>{ this.state.textoNota }</Text>
                 </View>
            </TouchableOpacity>
         )
@@ -54,10 +57,14 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         shadowOpacity: 0.1,
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'column'
     },
-    flashCardFrontText: {
+    flashCardText: {
         fontSize: 40,
         color: "#5F46A6",
+        
+    },
+    nota: {
+        color: "#cccccc",
     }
 })

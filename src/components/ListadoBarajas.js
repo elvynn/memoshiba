@@ -41,7 +41,8 @@ export default class ListadoBarajas extends Component{
         .once('value', snapshot => {
             this.setState({
                 barajas: this.state.barajas.concat(snapshot.val()),
-                loader: false
+                loader: false,
+                cartas: 3
             })
         })
     }
@@ -54,16 +55,21 @@ export default class ListadoBarajas extends Component{
                     <TouchableWithoutFeedback 
                      key = { baraja.id }
                      onPress={() => this.props.topNavigation.navigate('baraja', {
-                         id: baraja.id
+                         id: baraja.id,
+                         nombre: baraja.nombre
                      })}
                         >
+                        
                         <View style={ styles.card }>
                             <View>
-                                <Image style={ styles.foto } source={require('../assets/avatar-1.png')}  />
+                                <Image style={ styles.foto } source={require('../assets/img/avatar-1.png')}  />
                             </View>
                             <View style={ styles.textContainer } >
                                 <Text style={ styles.dificultad }>{ baraja.dificultad }</Text>
                                 <Text style={ styles.nombre }> { baraja.nombre } </Text>
+                                <Text style={ styles.cartasDisponibles }>Cartas: { this.state.cartas }</Text>
+                                
+                                
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -101,7 +107,8 @@ const styles=StyleSheet.create({
     },
     nombre: {
         color: "#320C58",
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: 'Raleway-Medium'
     },
     foto: {
         width: 70,
@@ -111,6 +118,12 @@ const styles=StyleSheet.create({
     },
     dificultad: {
         color: "#29DAFF",
-        fontSize: 13
+        fontSize: 13,
+        fontFamily: 'Raleway-Medium'
+    },
+    cartasDisponibles: {
+        color: "#ccc",
+        marginTop: 10,
+        fontFamily: 'Raleway-Medium'
     }
 })

@@ -7,7 +7,7 @@ import {
 
 } from 'react-native';
 import { db } from '../config/firebase';
-import { navigationOptionsWhite } from '../config/navOptions';
+import { navigationOptions } from '../config/navOptions';
 import ListadoCartas from './ListadoCartas';
 
 
@@ -15,15 +15,15 @@ import ListadoCartas from './ListadoCartas';
 export default class Baraja extends Component{
     constructor(props){
         super(props);
-
         this.id = this.props.navigation.state.params.id;
+        this.nombre = this.props.navigation.state.params.nombre;
         this.state = {
             cartas: []
         }
     }
 
     static navigationOptions = ({ navigation }) => ({
-        ...navigationOptionsWhite
+        ...navigationOptions
        
     })
 
@@ -39,17 +39,12 @@ export default class Baraja extends Component{
 
     render(){
         return(
-            <View>
+            <ScrollView>
                 <View>
-                    <Text style={styles.tituloBaraja}>Título de la baraja</Text>
+                    <Text style={styles.tituloBaraja}>{ this.nombre }</Text>
+                    <ListadoCartas cartas={ this.state.cartas } />
                 </View>
-                <ScrollView>
-                        <View>
-                            
-                            <ListadoCartas cartas={this.state.cartas} />
-                        </View>
-                </ScrollView>
-            </View>
+            </ScrollView>
         )
     }
 
@@ -59,14 +54,10 @@ const styles = StyleSheet.create({
     tituloBaraja: {
         fontSize: 28,
         color: "#320C58",
-        backgroundColor: "#ffffff",
         paddingBottom: 20,
         paddingLeft: 10,
-        shadowOffset: {
-            width: 0,
-            height: 1
-          },
-          shadowRadius: 2,
-          shadowOpacity: 0.1,
-    }
+        marginTop: 30,
+        fontFamily: 'Dosis-Semibold'
+    },
+  
 })

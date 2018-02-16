@@ -3,7 +3,7 @@ export const navigationOptions = {
         backgroundColor: '#5c56ae',
         paddingTop: 25,
         paddingHorizontal: 0,
-        height: 80
+        height: 80,
     },
     headerTitleStyle: { //Color del texto
         color: 'white'
@@ -17,7 +17,7 @@ export const navigationOptionsWhite = {
         paddingTop: 25,
         paddingHorizontal: 0,
         height: 80,
-        borderBottomColor: 'transparent',
+       // borderBottomColor: 'transparent',
         
     },
     headerTitleStyle: { //Color del texto
