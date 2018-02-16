@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import {  ScrollView } from 'react-native';
+import {  
+    ScrollView,
+    View,
+    Text,
+    StyleSheet
+
+} from 'react-native';
 import { db } from '../config/firebase';
-import { navigationOptions } from '../config/navOptions';
+import { navigationOptionsWhite } from '../config/navOptions';
 import ListadoCartas from './ListadoCartas';
 
 
@@ -17,8 +23,7 @@ export default class Baraja extends Component{
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: 'Baraja',
-        ...navigationOptions
+        ...navigationOptionsWhite
        
     })
 
@@ -34,10 +39,34 @@ export default class Baraja extends Component{
 
     render(){
         return(
-            <ScrollView>
-                    <ListadoCartas cartas={this.state.cartas} />
-            </ScrollView>
+            <View>
+                <View>
+                    <Text style={styles.tituloBaraja}>Título de la baraja</Text>
+                </View>
+                <ScrollView>
+                        <View>
+                            
+                            <ListadoCartas cartas={this.state.cartas} />
+                        </View>
+                </ScrollView>
+            </View>
         )
     }
 
 }
+
+const styles = StyleSheet.create({ 
+    tituloBaraja: {
+        fontSize: 28,
+        color: "#320C58",
+        backgroundColor: "#ffffff",
+        paddingBottom: 20,
+        paddingLeft: 10,
+        shadowOffset: {
+            width: 0,
+            height: 1
+          },
+          shadowRadius: 2,
+          shadowOpacity: 0.1,
+    }
+})

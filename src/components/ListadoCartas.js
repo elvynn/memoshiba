@@ -5,8 +5,11 @@ import {
     Image,
     StyleSheet,
     TouchableWithoutFeedback,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 }  from 'react-native';
+
+import Carta  from './Carta.js';
 
 export default class ListadoCartas extends Component {
     constructor(props){
@@ -15,24 +18,23 @@ export default class ListadoCartas extends Component {
 
     render(){
         return(
-            this.props.cartas.map((carta, i) => (
-                <TouchableWithoutFeedback key = { carta.id } >
-                    <View style={styles.container}>
-                        <View>
-                            <View style={[styles.flipCard]}>
-                                <View>
-                                    <Text>{ carta.frontal }</Text>
-                                </View>
-                                <View>
-                                    <Text>{ carta.trasero }</Text>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-                </TouchableWithoutFeedback>
-            ))
+            <View style={styles.container}>
+            { this.props.cartas.map((carta, i) => (
+                <View key = { carta.id } >
+                    <Carta carta={ carta } />
+                </View>
+            )) }
+            </View>
+            
         )
     }
 }
 
-const styles=StyleSheet.create({ })
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: 10,
+        paddingLeft: 10,
+        paddingRight: 10
+    }
+})
