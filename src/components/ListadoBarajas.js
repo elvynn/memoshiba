@@ -6,7 +6,8 @@ import {
     Image,
     TouchableWithoutFeedback,
     StyleSheet,
-    Dimensions 
+    Dimensions,
+    ActivityIndicator
 } from 'react-native';
  import { db } from '../config/firebase';
   
@@ -17,7 +18,7 @@ export default class ListadoBarajas extends Component{
         super(props);
         this.state = {
             barajas: [],
-            loader: true
+            isLoading: true
         }
     }
     
@@ -41,7 +42,7 @@ export default class ListadoBarajas extends Component{
         .once('value', snapshot => {
             this.setState({
                 barajas: this.state.barajas.concat(snapshot.val()),
-                loader: false,
+                isLoading: false,
                 cartas: 3
             })
         })
@@ -49,8 +50,9 @@ export default class ListadoBarajas extends Component{
 
     render(){
         const { navigation } = this.props
-        return(
-            <ScrollView style={styles.container}> 
+        return this.state.isLoading
+        ? (<ActivityIndicator style={styles.loader} size={1} color="#29DAFF" />)
+        : ( <ScrollView style={styles.container}> 
                  {this.state.barajas.map((baraja, i) => (
                     <TouchableWithoutFeedback 
                      key = { baraja.id }
@@ -81,9 +83,8 @@ export default class ListadoBarajas extends Component{
 
 //Estilos
 const styles=StyleSheet.create({
-    container: {
-       
-        
+    loader: {
+       marginTop: 100
     },
     card: {
         backgroundColor: "#ffffff",

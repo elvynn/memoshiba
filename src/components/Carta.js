@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     flashCardText: {
         fontSize: 40,
-        color: "#5F46A6",
+        color: "#29DAFF",
         
     },
     nota: {

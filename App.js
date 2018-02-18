@@ -1,19 +1,23 @@
 import React from 'react';
 import{ View } from 'react-native';
-
-import { Auth } from './src/components/Auth';
-import AppNavigation from './AppNavigation';
 import { Font } from 'expo';
+
+import AppNavigation from './AppNavigation';
+import { auth }  from './src/config/firebase';
+import Auth  from './src/components/auth/Auth';
 
 
 export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      user: {}
+      user:  null
     }
   }
 
+  componentWillMount(){
+    auth.onAuthStateChanged(user => this.setState({ user }))
+  }
 
   componentDidMount() {
     Font.loadAsync({
@@ -28,7 +32,12 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-          <AppNavigation  />
+      {
+        this.state.user
+        ? <AppNavigation  user={ this.state.user } />
+        : <Auth />
+      }
+          
       </View>
     );
   }
