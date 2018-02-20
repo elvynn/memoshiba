@@ -22,7 +22,7 @@ export default class ListadoBarajas extends Component{
         }
     }
     
-   
+/*   
     static navigationOptions = ({ navigation }) => ({
         title: 'memoshiba',
         headerStyle: {
@@ -35,7 +35,7 @@ export default class ListadoBarajas extends Component{
             color: 'white'
         },
         headerTintColor: 'white' //Color de la flechita
-    })
+    }) */
     
     componentWillMount(){
         db.ref('/barajas')
@@ -87,7 +87,7 @@ const styles=StyleSheet.create({
        marginTop: 100
     },
     card: {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#fcfcfc",
         marginBottom: 10,
         padding: 10,
         borderRadius: 10,

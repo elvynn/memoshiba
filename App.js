@@ -5,6 +5,7 @@ import { Font } from 'expo';
 import AppNavigation from './AppNavigation';
 import { auth }  from './src/config/firebase';
 import Auth  from './src/components/auth/Auth';
+import  AuthNavigation  from './src/components/auth/AuthNavigation';
 
 
 export default class App extends React.Component {
@@ -35,7 +36,7 @@ export default class App extends React.Component {
       {
         this.state.user
         ? <AppNavigation  user={ this.state.user } />
-        : <Auth />
+        : <AuthNavigation  />
       }
           
       </View>
