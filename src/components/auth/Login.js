@@ -5,25 +5,26 @@ import{
     TextInput,
     Image,
     TouchableHighlight,
-    StyleSheet
+    StyleSheet,
+    Dimensions,
+    ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import  auth  from '../../config/firebase';
 
-import { navigationOptions } from '../../config/navOptions';
+const { width, height } = Dimensions.get('window');
 
 export default class Login extends React.Component{
     constructor(props){
         super(props);
         this.state ={
             email: "",
-            password: ""
+            password: "",
+            borderColor: "#f1f1f1"
         }
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: 'Accede con tu cuenta',
-        ...navigationOptions
        
     })
 
@@ -31,38 +32,68 @@ export default class Login extends React.Component{
         auth.signInWithEmailAndPassword(email, password);
     }
 
+    onFocus() {
+        this.setState({
+            backgroundColor: '#29DAFF'
+        })
+    }
+
+      onBlur() {
+        this.setState({
+            backgroundColor: '#f1f1f1'
+        })
+      }
+
 
     render(){
         return(
             <View style={ styles.container }>
-                <Image style={ styles.logo } source={require('../../assets/img/avatar-1.png')} />
-                <TextInput
-                 style={ styles.input }
-                 onChangeText={ (text) => this.setState({email: text }) }
-                 placeholder={ "Tu email..." }
-                 value={ this.state.email }
-                 />
-                 <TextInput
-                 style={ styles.input }
-                 secureTextEntry={ true }
-                 onChangeText={ (text) => this.setState({password: text }) }
-                 placeholder={ "Tu contraseña..." }
-                 value={ this.state.password }
-                 />
-                 <TouchableHighlight
-                 style={ styles.loginBtn }
-                 onPress={ () => this.autenticateUser(this.state.email, this.state.password) }
-                 >
-                    <View>
-                        <Text style={ styles.textBtn }>Accede con tu cuenta</Text>
+                <View style={ styles.topArea }>
+                    <Image source={require('../../assets/img/bg-gradient.png')} style={styles.backgroundImage} />
+                </View>
+                <View style={styles.containerContent}>
+                    <View style={ styles.logoContainer }>
+                        <Image source={require('../../assets/img/logo-sintext.png')} style={styles.logoImage} />
                     </View>
-                 </TouchableHighlight>
+                    <ScrollView>
+                    <Text style={ styles.tittle }> ACCEDE CON TU CUENTA </Text>
+                        <View style={ styles.containerCard }>
+                            <View style={ styles.card }>
+                            
+                                <TextInput
+                                style={ styles.input }
+                                onChangeText={ (text) => this.setState({email: text }) }
+                                placeholder={ "Tu email..." }
+                                value={ this.state.email }
+                                />
+                                <TextInput
+                                style={ styles.input }
+                                secureTextEntry={ true }
+                                onChangeText={ (text) => this.setState({password: text }) }
+                                onBlur={ () => this.onBlur() }
+                                onFocus={ () => this.onFocus() }
+                                placeholder={ "Tu contraseña..." }
+                                value={ this.state.password }
+                                />
+                                <TouchableHighlight
+                                style={ styles.loginBtn }
+                                onPress={ () => this.autenticateUser(this.state.email, this.state.password) }
+                                >
+                                    <View>
+                                        <Text style={ styles.textBtn }>ENTRAR</Text>
+                                    </View>
+                                </TouchableHighlight>
 
-                 <TouchableHighlight onPress={ () =>  this.props.navigation.navigate('SignUp')}>
-                    <View>
-                        <Text style={{ textAlign: 'center' }}> Crea tu cuenta aquí </Text>
-                    </View>
-                 </TouchableHighlight>
+                                <TouchableHighlight style={ styles.crearBtn } onPress={ () =>  this.props.navigation.navigate('SignUp')}>
+                                    <View>
+                                        <Text style={ styles.textCuenta }> ¿No tienes cuenta? Crea la tuya aquí </Text>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    </ScrollView>
+                </View>
+                
             </View>
         )
     }
@@ -71,28 +102,88 @@ export default class Login extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 50,
-        marginTop: 90
+        backgroundColor: "#F1F1F1",
+        height,
     },
-    logo: {
-        width: 100,
-        height: 100,
-        marginBottom: 50
+    topArea: {
+     
+        height: 200,
     },
-    input: {
-        padding: 10,
+   
+    tittle: {
+        textAlign: "center",
         fontSize: 18,
-        borderColor: 'orangered'
+        color: "#5F46A6",
+        marginTop: 20,
+        marginBottom: 10
     },
+    backgroundImage: {
+        flex: 1,
+        width: null,
+        height: 100,
+        resizeMode: 'cover', // or 'stretch'
+    },
+    logoContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },  
+    containerCard: {
+        padding: 10,
+        
+    },  
+    logo: {
+        width: 200,
+        height: 100,
+    },
+    logoImage: {
+        marginTop: -85,
+        width: 130,
+        height: 130
+    },
+    card: {
+        backgroundColor: "#fcfcfc",
+        padding: 10,
+        borderRadius: 10,
+        shadowColor: '#000000',
+        shadowOffset: {
+          width: 0,
+          height: 1
+        },
+        shadowRadius: 2,
+        shadowOpacity: 0.1,
+    },
+    
     loginBtn: {
         backgroundColor: 'orange',
         marginVertical: 20,
         marginHorizontal: 10,
         padding: 10,
-        borderRadius: 3
+        borderRadius: 3,
+        backgroundColor: "#755fb2",
+        paddingTop: 20,
+        paddingBottom: 20,
+        borderRadius: 3,
+        marginBottom: 15
     },
     input: {
-        padding: 10,
+        height: 40, 
+        borderColor: '#f1f1f1', 
+        borderBottomWidth: 2,
         fontSize: 18,
+        marginBottom: 15
+    },
+    textBtn: {
+        color: "#ffffff",
+        textAlign: "center",
+        fontSize: 16,
+    },
+    textCuenta: {
+        color: "#747474",
+        textAlign: "center",
+    },
+    crearBtn: {
+        marginBottom: 10,
+        paddingTop: 10,
+        paddingBottom: 10        
     }
 })
