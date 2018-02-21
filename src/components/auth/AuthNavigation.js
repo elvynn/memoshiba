@@ -1,11 +1,11 @@
 import { StackNavigator } from 'react-navigation';
 
 import  Auth   from './Auth';
-import  Login   from './Login';
+import  EmailAuth   from './EmailAuth';
 
 const AuthNavigation = StackNavigator({
   auth: { screen: Auth },
-  login: { screen: Login }
+  emailAuth: { screen: EmailAuth },
   });
   
 

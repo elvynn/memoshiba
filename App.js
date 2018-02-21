@@ -4,7 +4,7 @@ import { Font } from 'expo';
 
 import AppNavigation from './AppNavigation';
 import { auth }  from './src/config/firebase';
-import Auth  from './src/components/auth/Auth';
+
 import  AuthNavigation  from './src/components/auth/AuthNavigation';
 
 
@@ -16,6 +16,9 @@ export default class App extends React.Component {
     }
   }
 
+  
+
+
   componentWillMount(){
     auth.onAuthStateChanged(user => this.setState({ user }))
   }
@@ -23,10 +26,14 @@ export default class App extends React.Component {
   componentDidMount() {
     Font.loadAsync({
       'Raleway-Medium': require('./src/assets/fonts/Raleway-Medium.ttf'),
+      'Raleway-Regular': require('./src/assets/fonts/Raleway-Regular.ttf'),
       'Dosis-Semibold': require('./src/assets/fonts/Dosis-SemiBold_0.ttf'),
     });
   }
   
+
+ 
+
    
  
 
@@ -36,7 +43,7 @@ export default class App extends React.Component {
       {
         this.state.user
         ? <AppNavigation  user={ this.state.user } />
-        : <AuthNavigation  />
+        : <AuthNavigation />
       }
           
       </View>

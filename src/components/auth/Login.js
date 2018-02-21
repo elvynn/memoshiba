@@ -3,7 +3,6 @@ import{
     View,
     Text,
     TextInput,
-    Image,
     TouchableHighlight,
     StyleSheet,
     Dimensions,
@@ -20,139 +19,99 @@ export default class Login extends React.Component{
         this.state ={
             email: "",
             password: "",
-            borderColor: "#f1f1f1"
+            bordeEmail: "#E9E9E9",
+            bordePass: "#E9E9E9"
         }
     }
 
-    static navigationOptions = ({ navigation }) => ({
-       
-    })
 
     autenticateUser(email,password){
         auth.signInWithEmailAndPassword(email, password);
     }
 
-    onFocus() {
-        this.setState({
-            backgroundColor: '#29DAFF'
-        })
+    onFocus(lugar) {
+        if(lugar == "email") {
+            this.setState({
+                bordeEmail: '#29DAFF'
+            })
+        }else{
+            this.setState({
+                bordePass: '#29DAFF'
+            })
+        }
     }
 
-      onBlur() {
-        this.setState({
-            backgroundColor: '#f1f1f1'
-        })
+      onBlur(lugar) {
+        if(lugar == "email") {
+            this.setState({
+                bordeEmail: '#E9E9E9'
+            })
+        }else{
+            this.setState({
+                bordePass: '#E9E9E9'
+            })
+        }
       }
 
 
     render(){
         return(
-            <View style={ styles.container }>
-                <View style={ styles.topArea }>
-                    <Image source={require('../../assets/img/bg-gradient.png')} style={styles.backgroundImage} />
-                </View>
-                <View style={styles.containerContent}>
-                    <View style={ styles.logoContainer }>
-                        <Image source={require('../../assets/img/logo-sintext.png')} style={styles.logoImage} />
-                    </View>
-                    <ScrollView>
-                    <Text style={ styles.tittle }> ACCEDE CON TU CUENTA </Text>
-                        <View style={ styles.containerCard }>
-                            <View style={ styles.card }>
-                            
-                                <TextInput
-                                style={ styles.input }
+            <View>
+                            <TextInput
+                                style={{height: 40, 
+                                    borderColor: this.state.bordeEmail, 
+                                    borderBottomWidth: 2,
+                                    fontSize: 18,
+                                    fontFamily: "Raleway-Regular",
+                                    marginLeft: 10,
+                                    marginRight: 10,
+                                    marginBottom: 30,
+                                    marginTop: 10 }} 
                                 onChangeText={ (text) => this.setState({email: text }) }
+                                onBlur={ () => this.onBlur("email") }
+                                onFocus={ () => this.onFocus("email") }
                                 placeholder={ "Tu email..." }
                                 value={ this.state.email }
-                                />
-                                <TextInput
-                                style={ styles.input }
+                            />
+                            <TextInput
+                                style={{height: 40, 
+                                    borderColor: this.state.bordePass, 
+                                    borderBottomWidth: 2,
+                                    fontSize: 18,
+                                    fontFamily: "Raleway-Regular",
+                                    marginLeft: 10,
+                                    marginRight: 10,
+                                    marginBottom: 15,
+                                    }}
                                 secureTextEntry={ true }
                                 onChangeText={ (text) => this.setState({password: text }) }
-                                onBlur={ () => this.onBlur() }
-                                onFocus={ () => this.onFocus() }
+                                onBlur={ () => this.onBlur("pass") }
+                                onFocus={ () => this.onFocus("pass") }
                                 placeholder={ "Tu contraseña..." }
                                 value={ this.state.password }
-                                />
-                                <TouchableHighlight
+                            />
+                            <TouchableHighlight
                                 style={ styles.loginBtn }
                                 onPress={ () => this.autenticateUser(this.state.email, this.state.password) }
                                 >
-                                    <View>
-                                        <Text style={ styles.textBtn }>ENTRAR</Text>
-                                    </View>
-                                </TouchableHighlight>
+                                <View>
+                                    <Text style={ styles.textBtn }>ENTRAR</Text>
+                                </View>
+                            </TouchableHighlight>
 
-                                <TouchableHighlight style={ styles.crearBtn } onPress={ () =>  this.props.navigation.navigate('SignUp')}>
+                                <TouchableHighlight style={ styles.crearBtn } 
+                                onPress={ () =>  this.props.navigation.navigate('signup')}>
                                     <View>
                                         <Text style={ styles.textCuenta }> ¿No tienes cuenta? Crea la tuya aquí </Text>
                                     </View>
                                 </TouchableHighlight>
-                            </View>
-                        </View>
-                    </ScrollView>
-                </View>
-                
-            </View>
+            </View>                    
+                           
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#F1F1F1",
-        height,
-    },
-    topArea: {
-     
-        height: 200,
-    },
-   
-    tittle: {
-        textAlign: "center",
-        fontSize: 18,
-        color: "#5F46A6",
-        marginTop: 20,
-        marginBottom: 10
-    },
-    backgroundImage: {
-        flex: 1,
-        width: null,
-        height: 100,
-        resizeMode: 'cover', // or 'stretch'
-    },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },  
-    containerCard: {
-        padding: 10,
-        
-    },  
-    logo: {
-        width: 200,
-        height: 100,
-    },
-    logoImage: {
-        marginTop: -85,
-        width: 130,
-        height: 130
-    },
-    card: {
-        backgroundColor: "#fcfcfc",
-        padding: 10,
-        borderRadius: 10,
-        shadowColor: '#000000',
-        shadowOffset: {
-          width: 0,
-          height: 1
-        },
-        shadowRadius: 2,
-        shadowOpacity: 0.1,
-    },
-    
     loginBtn: {
         backgroundColor: 'orange',
         marginVertical: 20,
@@ -165,21 +124,17 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         marginBottom: 15
     },
-    input: {
-        height: 40, 
-        borderColor: '#f1f1f1', 
-        borderBottomWidth: 2,
-        fontSize: 18,
-        marginBottom: 15
-    },
     textBtn: {
         color: "#ffffff",
         textAlign: "center",
         fontSize: 16,
+        fontFamily: "Raleway-Medium"
     },
     textCuenta: {
         color: "#747474",
         textAlign: "center",
+        fontSize: 16,
+        fontFamily: "Raleway-Medium"
     },
     crearBtn: {
         marginBottom: 10,

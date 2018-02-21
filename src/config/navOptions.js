@@ -1,6 +1,13 @@
+import React from 'react';
+import{
+    
+    Image,
+   
+} from 'react-native';
 export const navigationOptions = {
+    title: <Image source={require("../assets/img/logo-header.png")} />,
     headerStyle: {
-        backgroundColor: '#5c56ae',
+        backgroundColor: '#5F46A6',
         paddingTop: 25,
         paddingHorizontal: 0,
         height: 80,
