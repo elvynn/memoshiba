@@ -1,14 +1,14 @@
 import { StackNavigator } from 'react-navigation';
 
-import Home from './src/components/Home';
-import Baraja from './src/components/Baraja';
+import Home from './Home';
+import Baraja from './Baraja';
 
 
 
 
 
 const AppNavigation = StackNavigator({
-  home: { screen: Home },
+  Home: { screen: Home },
   baraja: { screen: Baraja }
 });
 

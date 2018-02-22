@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import { 
     View, 
@@ -6,19 +8,19 @@ import {
     Dimensions
 } from 'react-native';
 import { navigationOptions } from '../config/navOptions';
-import ListadoBarajas from './ListadoBarajas';
 
+import TopNav from "./TopNav";
 
 
 const { width, height } = Dimensions.get('window');
 
-export default class PantallaPrincipal extends Component{
+export default class Home extends Component{
     constructor (props){
         super(props);
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: "memoshiba",
+        title: "Descubre",
         ...navigationOptions
        
     })
@@ -27,7 +29,7 @@ export default class PantallaPrincipal extends Component{
     render(){
         return(
             <View style={styles.container} >
-                <ListadoBarajas topNavigation={this.props.navigation} />
+                <TopNav  />
             </View>
         )
     }
@@ -38,17 +40,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#f1f1f1",
-        padding: 20,
         height: height,
         width //Lo mismo que la linea de ariba pero si se llaman igual puede ponerse asi
-
     }
 })
-
-
-
-
-
-
-
-

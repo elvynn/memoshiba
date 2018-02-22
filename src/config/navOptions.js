@@ -5,7 +5,7 @@ import{
    
 } from 'react-native';
 export const navigationOptions = {
-    title: <Image source={require("../assets/img/logo-header.png")} />,
+   // title: <Image source={require("../assets/img/logo-header.png")} />,
     headerStyle: {
         backgroundColor: '#5F46A6',
         paddingTop: 25,
@@ -17,6 +17,8 @@ export const navigationOptions = {
     },
     headerTintColor: 'white' //Color de la flechita
 }
+
+
 
 export const navigationOptionsWhite = {
     headerStyle: {

@@ -2,10 +2,10 @@ import React from 'react';
 import{ View } from 'react-native';
 import { Font } from 'expo';
 
-import AppNavigation from './AppNavigation';
 import { auth }  from './src/config/firebase';
+import TabNav  from "./TabNav";
 
-import  AuthNavigation  from './src/components/auth/AuthNavigation';
+
 
 
 export default class App extends React.Component {
@@ -32,20 +32,18 @@ export default class App extends React.Component {
   }
   
 
- 
 
-   
- 
+
+  /*{
+    this.state.user
+    ? <AppNavigation  user={ this.state.user } />
+    : <AuthNavigation />
+  } */ 
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-      {
-        this.state.user
-        ? <AppNavigation  user={ this.state.user } />
-        : <AuthNavigation />
-      }
-          
+        <TabNav  user={ this.state.user } />
       </View>
     );
   }
