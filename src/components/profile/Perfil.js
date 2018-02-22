@@ -6,9 +6,11 @@ import{
     TouchableHighlight,
     StyleSheet,
     Dimensions,
-    ScrollView
+    ScrollView,
+    Image
 } from 'react-native';
 import  auth  from '../../config/firebase';
+import { navigationOptions } from '../../config/navOptions';
 
 const { width, height } = Dimensions.get('window');
 
@@ -20,6 +22,18 @@ export default class Perfil extends React.Component{
         }
     }
 
+
+    static navigationOptions = ({ navigation }) => ({
+        title: "Mis barajas",
+        tabBarIcon: ({tintColor}) => (
+            <Image 
+                source={ require("../../assets/icons/mis-barajas.png")} 
+                style={{  tintColor: '#5F46A6'}}
+            />
+         ),
+        showIcon: true,
+        ...navigationOptions
+    })
 
 
 

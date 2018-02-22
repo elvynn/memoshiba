@@ -5,7 +5,8 @@ import {
     View, 
     Text,
     StyleSheet,
-    Dimensions
+    Dimensions,
+    Image
 } from 'react-native';
 import { navigationOptions } from '../config/navOptions';
 
@@ -20,9 +21,15 @@ export default class Home extends Component{
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: "Descubre",
+        title: "Descubrir",
+        tabBarIcon: ({tintColor}) => (
+            <Image 
+                source={ require("../assets/icons/descubrir.png")} 
+                style={{  tintColor: '#5F46A6'}}
+            />
+         ),
+        showIcon: true,
         ...navigationOptions
-       
     })
 
 

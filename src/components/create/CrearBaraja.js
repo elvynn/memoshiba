@@ -6,9 +6,12 @@ import{
     TouchableHighlight,
     StyleSheet,
     Dimensions,
-    ScrollView
+    ScrollView,
+    Image
 } from 'react-native';
 import  auth  from '../../config/firebase';
+import { navigationOptions } from '../../config/navOptions';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -19,6 +22,18 @@ export default class CrearBaraja extends React.Component{
           
         }
     }
+
+    static navigationOptions = ({ navigation }) => ({
+        title: "Crear",
+        tabBarIcon: ({tintColor}) => (
+            <Image 
+                source={ require("../../assets/icons/crear.png")} 
+                style={{  tintColor: '#5F46A6'}}
+            />
+         ),
+        showIcon: true,
+        ...navigationOptions
+    })
 
 
 
