@@ -4,7 +4,7 @@ import { Font } from 'expo';
 
 import { auth }  from './src/config/firebase';
 import TabNav  from "./TabNav";
-
+import AuthNavigation from './src/components/auth/AuthNavigation';
 
 
 
@@ -34,16 +34,16 @@ export default class App extends React.Component {
 
 
 
-  /*{
-    this.state.user
-    ? <AppNavigation  user={ this.state.user } />
-    : <AuthNavigation />
-  } */ 
+  
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <TabNav  user={ this.state.user } />
+     {
+      this.state.user
+      ? <TabNav  user={ this.state.user } />
+      : <AuthNavigation />
+    } 
       </View>
     );
   }

@@ -1,6 +1,9 @@
 {
   "expo": {
     "sdkVersion": "25.0.0",
-    "facebookScheme": "fb1634935589887334"
+    "facebookScheme": "fb1634935589887334",
+    "splash": {
+      "image": "./src/assets/img/splash.png"
+    }
   }
 }

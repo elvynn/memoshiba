@@ -10,8 +10,7 @@ import{
     Image
 } from 'react-native';
 import  auth  from '../../config/firebase';
-import { navigationOptions } from '../../config/navOptions';
-
+import CreateTopNav from "./CreateTopNav";
 
 const { width, height } = Dimensions.get('window');
 
@@ -32,42 +31,31 @@ export default class CrearBaraja extends React.Component{
             />
          ),
         showIcon: true,
-        ...navigationOptions
     })
 
 
 
-    onFocus(lugar) {
-        if(lugar == "email") {
-            this.setState({
-                bordeEmail: '#29DAFF'
-            })
-        }else{
-            this.setState({
-                bordePass: '#29DAFF'
-            })
-        }
-    }
-
-      onBlur(lugar) {
-        if(lugar == "email") {
-            this.setState({
-                bordeEmail: '#E9E9E9'
-            })
-        }else{
-            this.setState({
-                bordePass: '#E9E9E9'
-            })
-        }
-      }
+   
 
 
     render(){
         return(
-            <View>
-                <Text>Hola!</Text>
+            <View style={ styles.container }>
+                <CreateTopNav />
             </View>                    
                            
         )
     }
 }
+
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#f1f1f1",
+        height: height,
+        width //Lo mismo que la linea de ariba pero si se llaman igual puede ponerse asi
+
+    }
+})
